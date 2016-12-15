@@ -28,3 +28,6 @@ do
     printf 'Found 1 image for %s, no image cleanup required\n' $repo
   fi
 done
+
+printf 'Cleaning up any other dangling images\n'
+docker images --filter 'dangling=true' -q --no-trunc | xargs -r docker rmi
